@@ -85,7 +85,6 @@
 'Assets/Scripts/Close Event Scripts/CloseEvent.cs'
 'Assets/Scripts/Close Event Scripts/EtiquetteEnable.cs'
 'Assets/Scripts/Close Event Scripts/EttiquetteDisable.cs'
-'Assets/Scripts/Close Event Scripts/EttiquetteEnable.cs'
 'Assets/Scripts/Close Event Scripts/FacilityQuit.cs'
 'Assets/Scripts/Close Event Scripts/SpamWindows.cs'
 'Assets/Scripts/Close Event Scripts/TurnArbeauOff.cs'

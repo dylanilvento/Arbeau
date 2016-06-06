@@ -7,6 +7,7 @@ using System;
 public class EnableDisable : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
 	//EventTrigger et;
 	public GameObject[] window;
+	GameManager gameMan;
 	int windowIndex = 0;
 	Button button;
 	public Button other;
@@ -21,6 +22,8 @@ public class EnableDisable : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 		button = GetComponent<Button>();
 		button.onClick.AddListener(TriggerButtonEvent);
 
+		gameMan = GameObject.Find("Event Controller").GetComponent<GameManager>();
+
 		if (gameObject.name.Contains("Disable")) {
 			etSpam = GetComponent<EttiquetteSpammer>();
 		}
@@ -34,7 +37,7 @@ public class EnableDisable : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 	public void OnPointerEnter(PointerEventData eventData)
     {
         //Debug.Log("Mouse enter");
-        if (windowIndex < window.Length && CheckSpammer()) {
+        if (windowIndex < window.Length && CheckSpammer() && !(gameMan.GetArbeauOff())) {
             GameObject win;
 
             //CanvasScaler scaler = GameObject.Find("Canvas").GetComponent<CanvasScaler>();

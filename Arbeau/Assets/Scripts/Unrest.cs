@@ -33,29 +33,29 @@ public class Unrest : MonoBehaviour {
 	void UpdateUnrest () {
 		
 		if (district.Equals("h1")) {
-			print("------------------");
+			//print("------------------");
 			jj = districtMan.districts[0].GetUnrest();
-			print("h1: " + jj);
+			//print("h1: " + jj);
 			//jj = currPip + 1;
 			//totalPips = jj;
 		}
 		else if (district.Equals("h2")) {
 			jj = districtMan.districts[1].GetUnrest();
-			print("h2: " + jj);
+			//print("h2: " + jj);
 			//jj = currPip + 1;
 			//totalPips = jj;
 		}
 
 		else if (district.Equals("i1")) {
 			jj = districtMan.districts[2].GetUnrest();
-			print("i1: " + jj);
+			//print("i1: " + jj);
 			//jj = currPip + 1;
 			//totalPips = jj;
 		}
 
 		else if (district.Equals("i2")) {
 			jj = districtMan.districts[3].GetUnrest();
-			print("i2: " + jj);
+			//print("i2: " + jj);
 			//jj = currPip + 1;
 			//totalPips = jj;
 		}

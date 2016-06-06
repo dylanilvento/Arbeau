@@ -108,15 +108,28 @@ public class CloseWindow : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 	public void OnPointerUp (PointerEventData data) {
 		//print("Closing window");
 		img.sprite = deactive;
-		print(textIndex);
+		//print(textIndex);
 		if (textIndex <= events.Count && events.Count > 0) {
+			//print("Test 1");
 			if (events[textIndex - 1] != null) {
 				events[textIndex - 1].StartEvent();
 			}
 		}
 
-		if (textIndex <= textList.Count) {
-			print("Test 1");
+		if (winType == WindowType.Desktop) {
+			GameObject.Find("Power Icon").GetComponent<DesktopIcon>().SetUnopened(true);
+			Destroy(parent);
+		}
+
+		else if (winType == WindowType.Context) {
+			timer = GameObject.Find("Timer").GetComponent<Timer>();
+			timer.DecrementWinNum();
+			Destroy(parent);
+			//print("Started timer");
+		}	
+
+		else if (textIndex <= textList.Count) {
+			//print("Test 2");
 		//if (winType != WindowType.Desktop) {
 			if (!(intro.GetIntroFinished()) && parent.name.Equals("Arbeau Window")) {
 				//print("Test A");
@@ -129,10 +142,10 @@ public class CloseWindow : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 			}*/
 
 			else {
-				print("Test C");
-				print(textIndex + " < " + textList.Count);
+				//print("Test C");
+				//print(textIndex + " < " + textList.Count);
 				if (textIndex < textList.Count) {
-					print("Test 3");
+					//print("Test 3");
 					if (textList[textIndex].Length <= 33) textList[textIndex] += "\n\n";
 
 					displayText.text = textList[textIndex];
@@ -156,20 +169,7 @@ public class CloseWindow : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 					Destroy(parent);	
 				}
 			}
-		}
-
-		else if (winType == WindowType.Context) {
-			timer = GameObject.Find("Timer").GetComponent<Timer>();
-			timer.DecrementWinNum();
-			Destroy(parent);
-			//print("Started timer");
-		}		
-
-
-		else if (winType == WindowType.Desktop) {
-			GameObject.Find("Power Icon").GetComponent<DesktopIcon>().SetUnopened(true);
-			Destroy(parent);
-		}
+		}	
 
 		else {
 			Destroy(parent);	
