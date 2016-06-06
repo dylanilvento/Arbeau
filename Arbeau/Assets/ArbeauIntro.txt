@@ -1,0 +1,87 @@
+Hello, I'm Arbeau Mk. IX, but you can call me Arbeau. 
+I'm pleased to make your acquaintance, user.
+[Next]
+I hope you're feeling spry, sprightly, sprig, spick, span 
+and sundry other varietals of swell. 
+[Next]
+According to my records, it is your first (1st) day of employment
+here at Edison. 
+[Next]
+Allow me to be the first to welcome you to the Edison
+family of incorporated entities, LTD. 
+[Next]
+Here's to you and to many profitable ventures between us.
+[Next]
+Pardon me for the informality, but my sensors indicate that it is
+7:01 am.
+[Next]
+It is well past time for us to jig and jag, zig and zag as such
+to venture forth toward the true purpose of all intelligent design,
+business. 
+[Next]
+If you'd kindly swivel your eyes to the
+power menu at the upper left-hand corner of your screen,
+I'll introduce you to your duties here at Edison.
+[Event]
+1
+It is your responsibility, good user, to monitor the populations at:
+[New Line]
+	H1: Velda
+[New Line]
+	H2: Indus Prime
+[New Line]
+	I1: Knoll
+[New Line]
+	I2: Wilts
+[Next]
+Henceforth designated as H1, H2, I1, I2.
+[Next]
+Any issues pertaining to the previous designations listed
+should be forwarded posthaste to the Senior
+Assistant Advisor to the Regional Chair of User Interfacing.
+[Next]
+Please exercise your incalculable discretion here, user.
+Stow, if you would, all directives, missives, statements
+observations, and/or critiques, until the requisite
+feedback meeting at the end of this month. 
+[Next]
+If you will redirect your attention to H1, H2, I1, I2,
+I am certain that your discerning gaze, vetted by the best
+at the Edison department for Acquisitional Hire,
+will note four resources, their names chosen with the utmost
+of pragmatic of sensibilities.
+[Next]
+Power, Suppression, Entertainment, and Unrest.
+[Next]
+It is your task, user, to direct Power, Suppression, or Entertainment
+to whichever population is in the most need at a given time. 
+[Next]
+Unrest is to be kept to a minimum, if you will.
+[Next]
+Here at Edison we pride ourselves on mitigating the risk
+that our constituents are exposed to
+and, on desperate occasion, the risk they expose themselves to.
+[Next]
+It is now 7:03 am which marks the end of our introduction to one another. 
+It has been a pleasure instructing you, user. I can tell we will be
+getting on in an amicable capacity, already. 
+[Next]
+Shall I send you along the first task? 
+[Next]
+Please feel free to leave any communications between us intact
+from here on.
+[Next]
+Of course, you may close them, but, then, user,
+they will be inaccessible to you. 
+[Next]
+I certainly wouldn't want to leave you directionless or alone
+for even an instant in this. 
+We are partners, you and I. 
+[Next]
+Now, if you would be so kind
+please redirect one unit of power from I1 to I2.
+Thank you. Your transaction will be processed at zero. 
+[Next]
+See, that wasn't so hard. You've even set an Edison record for 
+the fastest first task of the day. Congratulations!
+[End]
