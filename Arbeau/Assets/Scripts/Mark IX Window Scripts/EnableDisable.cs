@@ -13,11 +13,17 @@ public class EnableDisable : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
 	public CloseEvent buttonEvent;
 
+	EttiquetteSpammer etSpam = null;
+
 	// Use this for initialization
 	void Start () {
 		//et = GetComponent<EventTrigger>();
 		button = GetComponent<Button>();
 		button.onClick.AddListener(TriggerButtonEvent);
+
+		if (gameObject.name.Contains("Disable")) {
+			etSpam = GetComponent<EttiquetteSpammer>();
+		}
 	}
 	
 	// Update is called once per frame
@@ -28,10 +34,10 @@ public class EnableDisable : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 	public void OnPointerEnter(PointerEventData eventData)
     {
         //Debug.Log("Mouse enter");
-        if (windowIndex < window.Length) {
+        if (windowIndex < window.Length && CheckSpammer()) {
             GameObject win;
 
-            CanvasScaler scaler = GameObject.Find("Canvas").GetComponent<CanvasScaler>();
+            //CanvasScaler scaler = GameObject.Find("Canvas").GetComponent<CanvasScaler>();
 
 			//win = (GameObject) Instantiate (arbeauWin[index], new Vector2(0f, 0f), transform.rotation);
 			win = (GameObject) Instantiate (window[windowIndex], new Vector2(0f, 0f), transform.rotation);
@@ -66,6 +72,17 @@ public class EnableDisable : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     {
        // Debug.Log("Mouse exit");
         //isOver = false;
+    }
+
+    bool CheckSpammer () {
+    	if (gameObject.name.Contains("Disable") && etSpam != null) {
+			if (etSpam.GetSpammerOn() == true) return false;
+		}
+		else {
+			return true;
+		}
+
+		return true;
     }
 
     void TriggerButtonEvent () {
