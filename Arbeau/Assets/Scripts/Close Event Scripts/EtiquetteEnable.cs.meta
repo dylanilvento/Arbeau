@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: fbef67c8bb5e54c4b90bca4058d8cf98
+timeCreated: 1465238196
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - ettiquetteWindow: {fileID: 142072, guid: 646bb4303f8ca4a938fea1e0f704448e, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
