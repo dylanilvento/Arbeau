@@ -10,6 +10,8 @@ public class Timer : MonoBehaviour {
 	string fmt = "00";
 	bool roundEnd = false;
 	GameManager gameMan;
+
+	bool pauseTime = false;
 	
 	//number of Arbeau windows active, set to -1 when not in use
 	int winNum = -1;
@@ -26,7 +28,9 @@ public class Timer : MonoBehaviour {
 	void Update () {
 		//float newTime = Time.deltaTime;
 		//timeRemaining -= Mathf.FloorToInt(newTime);
-		if (winNum == 0 && timeRemaining >= 0f) {
+
+		//Gotta plan for deltaTime constantly increasing
+		if (winNum == 0 && timeRemaining >= 0f && !pauseTime) {
 			timeRemaining -= Time.deltaTime;
 			seconds = (Math.Truncate(timeRemaining) % 60);
 			timer.text = ((int) timeRemaining / 60) + ":" + seconds.ToString(fmt);//Math.Truncate(timeRemaining) + "";	
@@ -35,7 +39,7 @@ public class Timer : MonoBehaviour {
 		else if (timeRemaining <= 0f && !roundEnd) {
 			roundEnd = true;
 			gameMan.SetLockWindows(true);
-			print("Ended round from timer");
+			//print("Ended round from timer");
 			gameMan.EndRound();
 
 		}
@@ -64,6 +68,14 @@ public class Timer : MonoBehaviour {
 
 	public void SetTimer (float val) {
 		timeRemaining = val;
+	}
+
+	public void SetPauseTime (bool val) {
+		pauseTime = val;
+		print("called: " + val);
+		if (val)
+			timer.text = "PAUSED";
+
 	}
 
 }

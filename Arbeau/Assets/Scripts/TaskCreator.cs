@@ -62,7 +62,7 @@ public class TaskCreator : MonoBehaviour {
 
 		int[] cnt = LowHighCount();
 
-		if (gameMan.GetArbeauOff()) {
+		if (!gameMan.GetArbeauOff()) {
 			for (int ii = 0; ii < taskIndex.Length; ii++) {
 				GameObject win;
 
@@ -249,7 +249,7 @@ public class TaskCreator : MonoBehaviour {
 		timer = GameObject.Find("Timer").GetComponent<Timer>();
 		
 		/////////*******************
-		if (gameMan.GetArbeauOff()) {
+		if (!gameMan.GetArbeauOff()) {
 		
 			timer.SetWinNum(taskIndex.Length);
 		

@@ -39,6 +39,8 @@ public class DesktopIcon : MonoBehaviour, IPointerDownHandler {
 				firstClick = true;
 			}
 			else if (firstClick && (Time.timeSinceLevelLoad - firstClickTime < 0.5f)) {
+				if (gameObject.name.Contains("Settings")) GameObject.Find("Task Window/Window Background/Timer").GetComponent<Timer>().SetPauseTime(true);
+				
 				StartCoroutine("SpawnWindow");
 
 			}

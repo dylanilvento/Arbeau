@@ -187,7 +187,7 @@ public class GameManager : MonoBehaviour {
 			if (winOrLose.Equals("Win")) {
 				Blink blink = GameObject.Find(currDist.name.ToUpper() + " Menu Bar Background").GetComponent<Blink>();
 				blink.BlinkWin();
-				if (arbeauOff) taskCreator.SpawnArbeauWinLose(taskNum, winOrLose);
+				if (!arbeauOff) taskCreator.SpawnArbeauWinLose(taskNum, winOrLose);
 			}
 
 			else if (winOrLose.Equals("Lose")) {
@@ -208,7 +208,7 @@ public class GameManager : MonoBehaviour {
 						else {
 							Blink blink = GameObject.Find(currDist.name.ToUpper() + " Menu Bar Background").GetComponent<Blink>();
 							blink.BlinkLose();
-							if (arbeauOff) taskCreator.SpawnArbeauWinLose(taskNum, winOrLose);
+							if (!arbeauOff) taskCreator.SpawnArbeauWinLose(taskNum, winOrLose);
 						}
 
 						district.IncrementUnrest();

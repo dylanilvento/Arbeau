@@ -118,14 +118,14 @@ public class CloseWindow : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
 		if (winType == WindowType.Desktop) {
 			GameObject.Find("Power Icon").GetComponent<DesktopIcon>().SetUnopened(true);
-			Destroy(parent);
-		}
 
-		else if (winType == WindowType.Context) {
-			timer = GameObject.Find("Timer").GetComponent<Timer>();
-			timer.DecrementWinNum();
+			if (gameObject.transform.parent.gameObject.name.Contains("System")) {
+			
+				GameObject.Find("Task Window/Window Background/Timer").GetComponent<Timer>().SetPauseTime(false);
+			
+			}
+
 			Destroy(parent);
-			//print("Started timer");
 		}	
 
 		else if (textIndex <= textList.Count) {
@@ -169,7 +169,16 @@ public class CloseWindow : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 					Destroy(parent);	
 				}
 			}
-		}	
+		}
+
+		//this is pretty buggy, cause it's dependent on what comes first in the if/else chain
+		//find a way for close windows to meet only one of these if statements
+		else if (winType == WindowType.Context) {
+			timer = GameObject.Find("Timer").GetComponent<Timer>();
+			timer.DecrementWinNum();
+			Destroy(parent);
+			//print("Started timer");
+		}
 
 		else {
 			Destroy(parent);	
