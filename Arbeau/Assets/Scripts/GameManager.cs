@@ -15,6 +15,11 @@ public class GameManager : MonoBehaviour {
 	DistrictManager distMan;
 	TaskCreator taskCreator;
 	ArbeauSpawner arbeauSpawner;
+
+	public GameObject[] securityWin = new GameObject[4];
+
+	int closedCnt = 0;
+	public int securityClearance = 1;
 	int winNum = -1;
 	int round = 1;
 	bool lockWindows = false;
@@ -34,9 +39,8 @@ public class GameManager : MonoBehaviour {
 		closeMap.Add("i2", 3);
 
 		//if (playGame) PlayIntro();
-		if (playGame) StartCoroutine("StartRound");
-
-		
+		//if (playGame) StartCoroutine("StartRound");
+		if (playGame) StartRound();
 
 	}
 	
@@ -55,15 +59,17 @@ public class GameManager : MonoBehaviour {
 		//print("Number of context windows:" + val);
 	}
 
+	//called from TaskCreator.cs ???
 	public void DecrementWinNum () {
 		winNum--;
 		if (winNum <= 0) {
-			StartCoroutine("StartRound");
+			//StartCoroutine("StartRound");
+			StartRound ();
 		}
 	}
 
 	public void SetArbeauOff (bool val) {
-		print("It worked!");
+		//print("It worked!");
 		arbeauOff = val;
 		//taskCreator.SetArbeauOff(val);
 	}
@@ -79,7 +85,28 @@ public class GameManager : MonoBehaviour {
 		win.transform.SetParent(GameObject.Find("Canvas").transform, false);
 	}
 
-	IEnumerator StartRound () {
+	public void StartRound () {
+		if (round == 3 || round == 7) {
+			StartCoroutine("LoadSecurityCursor");
+			
+		}
+
+		else {
+			StartCoroutine("ContinueRoundStart");
+		}
+	}
+
+	public void ContinueStartRound () {
+		StartCoroutine("ContinueRoundStart");
+	}
+
+	IEnumerator LoadSecurityCursor () {
+		SetLoadingCursor(5);
+		yield return new WaitForSeconds(2f);
+		SpawnSecurityPrompt();
+	}
+
+	IEnumerator ContinueRoundStart () {
 
 		SetLoadingCursor(5);
 		yield return new WaitForSeconds(2f);
@@ -101,6 +128,31 @@ public class GameManager : MonoBehaviour {
 
 		taskCreator.StartCoroutine("SpawnArbeauContext");
 		//SetLoadingCursor(false);
+	}
+
+	void SpawnSecurityPrompt () {
+		if (round == 3) {
+			if (closedCnt == 0)
+				SpawnWindow(securityWin[0]); //good level 2
+			else
+				SpawnWindow(securityWin[1]); //bad level 2
+		}
+
+		if (round == 7) {
+			if (closedCnt == 0)
+				SpawnWindow(securityWin[2]); //good level 3
+			else
+				SpawnWindow(securityWin[3]); //bad level 3
+		}
+
+		securityClearance++;
+	}
+
+	void SpawnWindow (GameObject winToSpawn) {
+		GameObject win;
+		win = (GameObject) Instantiate (winToSpawn, new Vector2(0f, 0f), transform.rotation);
+		win.name = "Distribution Window";
+		win.transform.SetParent(GameObject.Find("Canvas").transform, false);
 	}
 
 	public void EndRound () {
@@ -203,6 +255,8 @@ public class GameManager : MonoBehaviour {
 							closeMap.TryGetValue(currDist.name, out closeIndex);
 
 							taskCreator.SpawnArbeauClose(closeIndex);
+
+							closedCnt++;
 						}
 
 						else {

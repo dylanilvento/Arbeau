@@ -131,44 +131,44 @@ public class CloseWindow : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 		else if (textIndex <= textList.Count) {
 			//print("Test 2");
 		//if (winType != WindowType.Desktop) {
-			if (!(intro.GetIntroFinished()) && parent.name.Equals("Arbeau Window")) {
+			/*if (!(intro.GetIntroFinished()) && parent.name.Equals("Arbeau Window")) {
 				//print("Test A");
 				intro.PlayIntroWindow();
-			}
+			}*/
 
 			/*else if (parent.name.Contains("Pop-up")) {
 				print("Test B");
 				Destroy(parent);
 			}*/
 
-			else {
+			
 				//print("Test C");
 				//print(textIndex + " < " + textList.Count);
-				if (textIndex < textList.Count) {
-					//print("Test 3");
-					if (textList[textIndex].Length <= 33) textList[textIndex] += "\n\n";
+			if (textIndex < textList.Count) {
+				//print("Test 3");
+				if (textList[textIndex].Length <= 33) textList[textIndex] += "\n\n";
 
-					displayText.text = textList[textIndex];
-					textIndex++;
-				}
-
-				else {
-
-					if (winType == WindowType.Context) {
-						timer = GameObject.Find("Timer").GetComponent<Timer>();
-						timer.DecrementWinNum();
-
-						//print("Started timer");
-					}
-					else if (winType == WindowType.Lose || winType == WindowType.Win) {
-						gameMan.DecrementWinNum();
-
-						//print("Ended round");
-					}
-					//taskCreator.ResetSpeechIndex(num);
-					Destroy(parent);	
-				}
+				displayText.text = textList[textIndex];
+				textIndex++;
 			}
+
+			else {
+
+				if (winType == WindowType.Context) {
+					timer = GameObject.Find("Timer").GetComponent<Timer>();
+					timer.DecrementWinNum();
+
+					//print("Started timer");
+				}
+				else if (winType == WindowType.Lose || winType == WindowType.Win) {
+					gameMan.DecrementWinNum();
+
+					//print("Ended round");
+				}
+				//taskCreator.ResetSpeechIndex(num);
+				Destroy(parent);	
+			}
+			
 		}
 
 		//this is pretty buggy, cause it's dependent on what comes first in the if/else chain

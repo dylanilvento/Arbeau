@@ -10,6 +10,8 @@ public class DesktopIcon : MonoBehaviour, IPointerDownHandler {
 	public static bool unopened = true;
 	Image img;
 	public Sprite inactive, active;
+
+	public GameObject securityPrompt;
 	
 	float firstClickTime;
 	bool firstClick;
@@ -39,7 +41,12 @@ public class DesktopIcon : MonoBehaviour, IPointerDownHandler {
 				firstClick = true;
 			}
 			else if (firstClick && (Time.timeSinceLevelLoad - firstClickTime < 0.5f)) {
-				if (gameObject.name.Contains("Settings")) GameObject.Find("Task Window/Window Background/Timer").GetComponent<Timer>().SetPauseTime(true);
+				if (gameObject.name.Contains("Settings")) {
+					if (gameMan.securityClearance < 3)
+						CreateWindow(securityPrompt);
+					else
+						GameObject.Find("Task Window/Window Background/Timer").GetComponent<Timer>().SetPauseTime(true);
+				}
 				
 				StartCoroutine("SpawnWindow");
 
@@ -56,14 +63,19 @@ public class DesktopIcon : MonoBehaviour, IPointerDownHandler {
 		yield return new WaitForSeconds(0.75f);
 
 		if (!gameMan.GetLockWindows()) {
-			GameObject winObj;
-			winObj = (GameObject) Instantiate (window, new Vector2(0f, 0f), transform.rotation);
-			winObj.transform.SetParent(GameObject.Find("Canvas").transform, false);
-			winObj.transform.localPosition = new Vector2(-130f, 0f);
+			//Make sure this works
+			CreateWindow(window);
 			unopened = false;
 			firstClick = false;
 		}
 		//SetInactiveSprite();
+	}
+
+	void CreateWindow (GameObject givenWindow) {
+		GameObject winObj;
+		winObj = (GameObject) Instantiate (givenWindow, new Vector2(0f, 0f), transform.rotation);
+		winObj.transform.SetParent(GameObject.Find("Canvas").transform, false);
+		winObj.transform.localPosition = new Vector2(-130f, 0f);
 	}
 
 	public IEnumerator Flash () {
