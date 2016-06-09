@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour {
 
 	public bool playGame;
 
-	public GameObject retrievalWin, distrWin, introWin; //retrieval and distribution
+	public GameObject retrievalWin, distrWin, introWin, gameOverWin; //retrieval and distribution
 	
 	public Texture2D defaultCursor;
 	public Texture2D[] loadingCursor = new Texture2D[7];
@@ -91,6 +91,10 @@ public class GameManager : MonoBehaviour {
 			
 		}
 
+		if (closedCnt >= 4) {
+			StartCoroutine(LoadSpawn(gameOverWin));
+		}
+
 		else {
 			StartCoroutine("ContinueRoundStart");
 		}
@@ -104,6 +108,12 @@ public class GameManager : MonoBehaviour {
 		SetLoadingCursor(5);
 		yield return new WaitForSeconds(2f);
 		SpawnSecurityPrompt();
+	}
+
+	IEnumerator LoadSpawn (GameObject win) {
+		SetLoadingCursor(5);
+		yield return new WaitForSeconds(2f);
+		SpawnWindow(gameOverWin); 
 	}
 
 	IEnumerator ContinueRoundStart () {

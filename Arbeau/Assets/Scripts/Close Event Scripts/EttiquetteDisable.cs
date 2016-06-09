@@ -7,6 +7,7 @@ public class EttiquetteDisable : CloseEvent {
 
 	public override void StartEvent () {
 		GameObject win;
+		print("Ettiquette Disable worked");
 
 		win = (GameObject) Instantiate (ettiquetteWindow, new Vector2(0f, 0f), transform.rotation);
 

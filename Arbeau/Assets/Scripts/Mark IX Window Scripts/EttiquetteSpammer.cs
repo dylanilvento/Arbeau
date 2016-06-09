@@ -20,6 +20,7 @@ public class EttiquetteSpammer : MonoBehaviour, IPointerEnterHandler {
 
 	public void SetSpammerOn (bool val) {
 		spammerOn = val;
+		print("Spammer for " + gameObject.name + " is on");
 
 	}
 

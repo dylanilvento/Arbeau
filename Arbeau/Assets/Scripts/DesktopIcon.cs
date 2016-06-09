@@ -41,16 +41,22 @@ public class DesktopIcon : MonoBehaviour, IPointerDownHandler {
 				firstClick = true;
 			}
 			else if (firstClick && (Time.timeSinceLevelLoad - firstClickTime < 0.5f)) {
+				//checks if settings icon
 				if (gameObject.name.Contains("Settings")) {
+					//checks security clearance
 					if (gameMan.securityClearance < 3)
+						//if too low, give warning prompt
 						CreateWindow(securityPrompt);
 					else
 						GameObject.Find("Task Window/Window Background/Timer").GetComponent<Timer>().SetPauseTime(true);
+						StartCoroutine("SpawnWindow");
+				}
+				else {
+					StartCoroutine("SpawnWindow");
 				}
 				
-				StartCoroutine("SpawnWindow");
-
 			}
+			
 			else {
 				firstClickTime = Time.timeSinceLevelLoad;
 			}

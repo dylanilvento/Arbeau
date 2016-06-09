@@ -15,6 +15,8 @@ public class FolderIcon : MonoBehaviour, IPointerDownHandler {
 	RectTransform rectTransform;
 	GameManager gameMan;
 
+	public string winObjName;
+
 	public enum SpawnType {FolderWindow, ArbeauWindow};
 	public SpawnType spawn; //set in editor
 
@@ -64,6 +66,11 @@ public class FolderIcon : MonoBehaviour, IPointerDownHandler {
 		winObj = (GameObject) Instantiate (window, new Vector2(0f, 0f), transform.rotation);
 		winObj.transform.SetParent(GameObject.Find("Canvas").transform, false);
 		winObj.transform.localPosition = new Vector2(-130f, 0f);
+	
+		if (winObjName.Length > 0) {
+			winObj.name = winObjName;
+		}
+	
 		//unopened = false;
 		firstClick = false;
 

@@ -28,7 +28,6 @@ public class CloseWindow : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
 	//Dictionary<int, CloseEvent> eventsMap = new Dictionary<int, CloseEvent>(); //index to event
 
-
 	GameManager gameMan;
 	// Use this for initialization
 	void Start () {
@@ -97,6 +96,10 @@ public class CloseWindow : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
 		displayText = gameObject.transform.parent.gameObject.transform.GetChild(0).GetChild(0).GetComponent<Text>();
 		
+		for (int ii = 0; ii < textList.Count; ii++) {
+			textList[ii] = textList[ii].Replace("NEWLINE","\n");
+		}
+
 		displayText.text = textList[textIndex];
 		textIndex++;
 	}
