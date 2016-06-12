@@ -74,6 +74,7 @@ public class GameManager : MonoBehaviour {
 		//taskCreator.SetArbeauOff(val);
 	}
 
+	//called from ArbeauSpawner.cs, 
 	public bool GetArbeauOff () {
 		return arbeauOff;
 	}
@@ -86,13 +87,16 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void StartRound () {
-		if (round == 3 || round == 7) {
-			StartCoroutine("LoadSecurityCursor");
-			
+		
+		//if (closedCnt >= 4) { //bug with this line where it accepts closedCnt == 3
+		if (closedCnt >= 4) {
+			print("closedCnt > 4?");
+			StartCoroutine(LoadSpawn(gameOverWin));
 		}
 
-		if (closedCnt >= 4) {
-			StartCoroutine(LoadSpawn(gameOverWin));
+		else if (round == 3 || round == 7) {
+			StartCoroutine("LoadSecurityCursor");
+			
 		}
 
 		else {
@@ -113,7 +117,7 @@ public class GameManager : MonoBehaviour {
 	IEnumerator LoadSpawn (GameObject win) {
 		SetLoadingCursor(5);
 		yield return new WaitForSeconds(2f);
-		SpawnWindow(gameOverWin); 
+		SpawnWindow(win); 
 	}
 
 	IEnumerator ContinueRoundStart () {
@@ -267,6 +271,7 @@ public class GameManager : MonoBehaviour {
 							taskCreator.SpawnArbeauClose(closeIndex);
 
 							closedCnt++;
+							print("closedCnt: " + closedCnt);
 						}
 
 						else {

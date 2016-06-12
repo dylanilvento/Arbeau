@@ -64,6 +64,8 @@ public class ArbeauSpawner : MonoBehaviour {
 	}
 
 	void SpawnWindow () {
+		if (gameMan.GetArbeauOff()) return;
+
 		RectTransform canvasRect = GameObject.Find("Canvas").GetComponent<RectTransform>();
 			 
 		//then you calculate the position of the UI element
