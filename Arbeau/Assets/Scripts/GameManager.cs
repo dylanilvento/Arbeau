@@ -6,6 +6,7 @@ using System.Collections.Generic;
 public class GameManager : MonoBehaviour {
 
 	public bool playGame;
+	public bool arbeauOff = false;
 
 	public GameObject retrievalWin, distrWin, introWin, gameOverWin; //retrieval and distribution
 	
@@ -17,13 +18,21 @@ public class GameManager : MonoBehaviour {
 	ArbeauSpawner arbeauSpawner;
 
 	public GameObject[] securityWin = new GameObject[4];
+	public GameObject[] securityWinNoArbeau = new GameObject[2];
+
+	public GameObject[] endOfGameWin = new GameObject[3];
+	public GameObject[] endOfGameWinNoArbeau = new GameObject[3];
 
 	int closedCnt = 0;
-	public int securityClearance = 1;
+
+	[Range(1, 3)]
+	public int securityClearance;
+
 	int winNum = -1;
-	int round = 1;
+
+	[Range(1, 11)]
+	public int round = 1;
 	bool lockWindows = false;
-	bool arbeauOff = false;
 
 	Dictionary<string, int> closeMap = new Dictionary<string, int>();
 	
@@ -88,10 +97,13 @@ public class GameManager : MonoBehaviour {
 
 	public void StartRound () {
 		
-		//if (closedCnt >= 4) { //bug with this line where it accepts closedCnt == 3
 		if (closedCnt >= 4) {
 			print("closedCnt > 4?");
 			StartCoroutine(LoadSpawn(gameOverWin));
+		}
+
+		else if (round > 10) {
+			StartCoroutine("EndGame");
 		}
 
 		else if (round == 3 || round == 7) {
@@ -106,6 +118,34 @@ public class GameManager : MonoBehaviour {
 
 	public void ContinueStartRound () {
 		StartCoroutine("ContinueRoundStart");
+	}
+
+	IEnumerator EndGame () {
+		SetLoadingCursor(5);
+		yield return new WaitForSeconds(2f);
+		//if arbeau windows have been turned off
+		if (arbeauOff) {
+			if (closedCnt == 0) {
+				SpawnWindow(endOfGameWinNoArbeau[0]);		
+			}
+			else if (closedCnt == 1 || closedCnt == 2) {
+				SpawnWindow(endOfGameWinNoArbeau[1]);
+			}
+			else {
+				SpawnWindow(endOfGameWinNoArbeau[2]);
+			}
+		}
+		else {
+			if (closedCnt == 0) {
+				SpawnWindow(endOfGameWin[0]);		
+			}
+			else if (closedCnt == 1 || closedCnt == 2) {
+				SpawnWindow(endOfGameWin[1]);
+			}
+			else {
+				SpawnWindow(endOfGameWin[2]);
+			}
+		}
 	}
 
 	IEnumerator LoadSecurityCursor () {
@@ -146,17 +186,27 @@ public class GameManager : MonoBehaviour {
 
 	void SpawnSecurityPrompt () {
 		if (round == 3) {
-			if (closedCnt == 0)
+			if (closedCnt == 0 && !arbeauOff) {
 				SpawnWindow(securityWin[0]); //good level 2
-			else
+			}
+			else if (closedCnt > 0 && !arbeauOff) {
 				SpawnWindow(securityWin[1]); //bad level 2
+			}
+			else if (arbeauOff) {
+				SpawnWindow(securityWinNoArbeau[0]);
+			}
 		}
 
 		if (round == 7) {
-			if (closedCnt == 0)
+			if (closedCnt == 0 && !arbeauOff) {
 				SpawnWindow(securityWin[2]); //good level 3
-			else
+			}
+			else if (closedCnt > 0 && !arbeauOff) {
 				SpawnWindow(securityWin[3]); //bad level 3
+			}
+			else if (arbeauOff) {
+				SpawnWindow(securityWinNoArbeau[1]);
+			}
 		}
 
 		securityClearance++;

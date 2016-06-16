@@ -12,7 +12,7 @@ public class District {
 	int power = 0;
 	int suppression = 0;
 	int entertainment = 0;
-	int unrest = 2;
+	int unrest = 0;
 
 	bool closed = false;
 
