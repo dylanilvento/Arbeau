@@ -5,7 +5,7 @@ News just in of a power skip at the Edison branch in
 , let's keep them at an acceptable interval until they can boot up a backup generator.
 0
 2
-See, that wasn't so hard. You've even set an Edison record for the fastest first task of the day.
+See, that wasn't so hard. You've even set a new Edison™ record for the fastest task of the day.
 Congratulations!
 1
 Well, that was unseemly. Nothing to worry about, we'll just scuttle that one under the rug, so to speak. I'll let HR know to put this one on Arbeau, no thanks necessary. 
@@ -130,9 +130,9 @@ Yes, I used figurative language! That must be it. You see, when I said "Opiate D
 Power
 Allocate
 Our sensors indicate that the weather in
-is splendid this morning,
+is splendid this morning.
 1
-but just in case the wind picks up, let's not borrow any of their auxiliary power at the moment.
+But just in case the wind picks up, let's not borrow any of their auxiliary power at the moment.
 1
 Splendid sunlight still sings its siren song from street to street. The sector shines brightly thanks to you, user.
 3

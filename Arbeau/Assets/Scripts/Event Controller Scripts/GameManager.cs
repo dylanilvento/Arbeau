@@ -47,9 +47,9 @@ public class GameManager : MonoBehaviour {
 		closeMap.Add("i1", 2);
 		closeMap.Add("i2", 3);
 
-		//if (playGame) PlayIntro();
+		if (playGame) StartCoroutine("PlayIntro");
 		//if (playGame) StartCoroutine("StartRound");
-		if (playGame) StartRound();
+		//if (playGame) StartRound();
 
 	}
 	
@@ -88,7 +88,10 @@ public class GameManager : MonoBehaviour {
 		return arbeauOff;
 	}
 
-	void PlayIntro () {
+	IEnumerator PlayIntro () {
+		SetLoadingCursor(5);
+		yield return new WaitForSeconds(2f);
+		arbeauSpawner.SetLockWindow(true);
 		GameObject win;
 		win = (GameObject) Instantiate (introWin, new Vector2(0f, 200f), transform.rotation);
 		
@@ -98,7 +101,7 @@ public class GameManager : MonoBehaviour {
 	public void StartRound () {
 		
 		if (closedCnt >= 4) {
-			print("closedCnt > 4?");
+			//print("closedCnt > 4?");
 			StartCoroutine(LoadSpawn(gameOverWin));
 		}
 

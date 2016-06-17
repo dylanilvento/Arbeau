@@ -23,7 +23,7 @@ Ah, Arbeau Mk IV, your fried memory tethers smell so sweetly of failure.
 I owe you 1% on your next pay check for taking care of that little AI hiccup. 
 4
 That can't be good...
-My reports indicate that Arbeau Mk IV is running amok in sector __'s Project Beacon code.
+My reports indicate that Arbeau Mk IV is running amok in the sector's Project Beacon code.
 I suppose there's no use crying over spilled millions of lines of code.
 It's my fault for putting us in a position to fail. 
 Suppression

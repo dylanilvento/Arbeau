@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 
 public class ArbeauSpawner : MonoBehaviour {
-	public bool useSpawner;
+	public bool useSpawner, fastSpawn;
 	public GameObject[] arbeauWin;
 	Camera camera;
 	bool lockWindow = false;
@@ -36,6 +36,7 @@ public class ArbeauSpawner : MonoBehaviour {
 	
 	}
 
+	//called by GameManager.cs
 	public void SetLockWindow (bool val) {
 		lockWindow = val;
 	}
@@ -57,6 +58,8 @@ public class ArbeauSpawner : MonoBehaviour {
 
 	float DetermineWait (int round) {
 		float t = 15f;
+		if (fastSpawn) return 0.5f;
+
 		spawnMap.TryGetValue(round, out t);
 
 		float result = UnityEngine.Random.Range(t - UnityEngine.Random.Range(t - (t - 1), (t / 2)), t);
@@ -115,10 +118,10 @@ public class ArbeauSpawner : MonoBehaviour {
 		//print("Width: " + winWidth + ", Height: " + winHeight);
 		//print("Size Delta Height: " + winRectTrans.sizeDelta.y);
 
-		left = (-1) * (Screen.width - (winWidth / 1.1f));
-		right = Screen.width - (winWidth / 1.0f);
-		bottom = (-1) * (Screen.height - (winHeight / 0.8f));
-		top = Screen.height - (winHeight / 1.4f);
+		left = (-1) * (Screen.width - (winWidth / 1.1f)); //* scaler.referenceResolution.x;
+		right = Screen.width - (winWidth / 1.0f); //* scaler.referenceResolution.x;
+		bottom = (-1) * (Screen.height - (winHeight / 0.8f)); //* scaler.referenceResolution.y;
+		top = Screen.height - (winHeight / 1.4f);// * scaler.referenceResolution.y;
 
 		//Left side
 		if (winX < left) {
