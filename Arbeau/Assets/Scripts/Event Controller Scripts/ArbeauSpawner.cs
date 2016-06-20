@@ -89,7 +89,7 @@ public class ArbeauSpawner : MonoBehaviour {
 		GameObject win;
 
 		//win = (GameObject) Instantiate (arbeauWin[index], new Vector2(0f, 0f), transform.rotation);
-		win = (GameObject) Instantiate (arbeauWin[UnityEngine.Random.Range(0, (arbeauWin.Length - 1))], new Vector2(0f, 0f), transform.rotation);
+		win = (GameObject) Instantiate (arbeauWin[UnityEngine.Random.Range(0, (arbeauWin.Length))], new Vector2(0f, 0f), transform.rotation);
 
 		//win.SetActive(false);
 		win.name = "Arbeau Pop-up Window";
@@ -101,6 +101,9 @@ public class ArbeauSpawner : MonoBehaviour {
 
 		Rect winRect = win.transform.GetChild(0).gameObject.GetComponent<RectTransform>().rect;
 		RectTransform winRectTrans = win.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
+
+		//print("Screen width: " + Screen.width);
+		print("Screen height: " + Screen.height);
 
 		float winX = Input.mousePosition.x * scaler.referenceResolution.x / Screen.width - (scaler.referenceResolution.x / 2f);
 		float winY = Input.mousePosition.y * scaler.referenceResolution.y / Screen.height - (scaler.referenceResolution.y / 2f);
@@ -118,13 +121,58 @@ public class ArbeauSpawner : MonoBehaviour {
 		//print("Width: " + winWidth + ", Height: " + winHeight);
 		//print("Size Delta Height: " + winRectTrans.sizeDelta.y);
 
-		left = (-1) * (Screen.width - (winWidth / 1.1f)); //* scaler.referenceResolution.x;
-		right = Screen.width - (winWidth / 1.0f); //* scaler.referenceResolution.x;
-		bottom = (-1) * (Screen.height - (winHeight / 0.8f)); //* scaler.referenceResolution.y;
-		top = Screen.height - (winHeight / 1.4f);// * scaler.referenceResolution.y;
+		if (Screen.width >= 754f) {
+			left = (-1) * (Screen.width - (winWidth / DeriveLeftDivisor())); //* scaler.referenceResolution.x;
+		}
+
+		else {
+			left = (-1) * (Screen.width - (winWidth / 10f));
+		}
+		//used for really small screen sizes
+		//left = (-1) * (Screen.width / 0.5f);
+
+		if (Screen.width >= 754f) {
+			right = (Screen.width - (winWidth / DeriveRightDivisor())); //* scaler.referenceResolution.x;
+		}
+
+		else {
+			right = (Screen.width - (winWidth / 10f));
+		}
+
+		if (Screen.height >= 337f && Screen.height <= 650f) {
+			top = Screen.height - (winHeight / DeriveTopDivisor());// * scaler.referenceResolution.y;
+		}
+
+		else if (Screen.height > 650f) {
+			//print("AM I GETTING THIS?");
+			top = (Screen.height - (winHeight / 0.7f));// * scaler.referenceResolution.y;
+		}
+
+		else {
+			top = (Screen.height - (winHeight / 10f));
+		}
+
+		if (Screen.height >= 337f && Screen.height <= 650f) {
+			bottom = (-1) * (Screen.height - (winHeight / DeriveBottomDivisor()));// * scaler.referenceResolution.y;
+		}
+
+		else if (Screen.height > 650f) {
+			//print("AM I GETTING THIS?");
+			bottom = (-1) * (Screen.height - (winHeight / 0.5f));// * scaler.referenceResolution.y;
+		}
+
+		else {
+			bottom = (-1) * (Screen.height - (winHeight / 10f));
+		}
+
+		//right = Screen.width - (winWidth / 2.5f); //* scaler.referenceResolution.x;
+		
+		//bottom = (-1) * (Screen.height - (winHeight / 0.5f));
+		//top = Screen.height - (winHeight / 0.5f);
 
 		//Left side
 		if (winX < left) {
+			print("winX (" + winX + ") < left (" + left + ")");
 			winX = left; //* scaler.referenceResolution.x;
 		}
 		//right side
@@ -141,7 +189,43 @@ public class ArbeauSpawner : MonoBehaviour {
 			winY = top;// * scaler.referenceResolution.y;
 		}
 
+		print("winX: " + winX + ", winY: " + winY);
+
 		Vector2 newPos = new Vector2(winX, winY);
 		win.GetComponent<RectTransform>().anchoredPosition = newPos;
 	}
+
+	float DeriveLeftDivisor () {
+		//float divisor = 2.5f - ((Screen.width - 754f) * 0.0028f);
+		float divisor = 2.5f - ((Screen.width - 754f) * 0.0028f);
+		//print("divisor: " + divisor);
+
+		return divisor;
+	}
+
+	float DeriveRightDivisor () {
+		//float divisor = 2.5f - ((Screen.width - 754f) * 0.0028f);
+		float divisor = 2.45f - ((Screen.width - 754f) * 0.0028f);
+		//print("divisor: " + divisor);
+
+		return divisor;
+	}
+
+	float DeriveTopDivisor () {
+		//float divisor = 2.5f - ((Screen.width - 754f) * 0.0028f);
+		float divisor = 2.55f - ((Screen.height - 337f) * 0.0062f);
+		//print("divisor: " + divisor);
+
+		return divisor;
+	}
+
+	float DeriveBottomDivisor () {
+
+		//float divisor = 2.5f - ((Screen.width - 754f) * 0.0028f);
+		float divisor = 2f - ((Screen.height - 337f) * 0.0062f);
+		//print("divisor: " + divisor);
+
+		return divisor;
+	}
+
 }

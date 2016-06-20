@@ -22,13 +22,15 @@ public class SubmitArbeauWindow : MonoBehaviour {
 
 		button.onClick.AddListener(CloseWindow);
 
-		orgButtonBG = buttonBG.color;
-		orgButtonText = buttonText.color;
-
-		buttonBG.color = Color.clear;
-		buttonText.color = Color.clear;
-
-		button.interactable = false;
+		if (buttonBG != null) {
+			orgButtonBG = buttonBG.color;
+			orgButtonText = buttonText.color;
+	
+			buttonBG.color = Color.clear;
+			buttonText.color = Color.clear;
+	
+			button.interactable = false;
+		}
 	}
 	
 	// Update is called once per frame
