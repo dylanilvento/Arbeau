@@ -12,6 +12,8 @@ public class DesktopIcon : MonoBehaviour, IPointerDownHandler {
 	public Sprite inactive, active;
 
 	public GameObject securityPrompt;
+
+	static List<DesktopIcon> icons = new List<DesktopIcon>();
 	
 	float firstClickTime;
 	bool firstClick;
@@ -23,6 +25,8 @@ public class DesktopIcon : MonoBehaviour, IPointerDownHandler {
 		img = GetComponent<Image>();
 		rectTransform = GetComponent<RectTransform>();
 		gameMan = GameObject.Find("Event Controller").GetComponent<GameManager>();
+
+		icons.Add(GetComponent<DesktopIcon>());
 	}
 	
 	// Update is called once per frame
@@ -124,11 +128,10 @@ public class DesktopIcon : MonoBehaviour, IPointerDownHandler {
 	}
 
 	void DeactivateIcons () {
-	
-		GameObject.Find("Power Icon").GetComponent<DesktopIcon>().SetInactiveSprite();
-		GameObject.Find("Suppression Icon").GetComponent<DesktopIcon>().SetInactiveSprite();
-		GameObject.Find("Entertainment Icon").GetComponent<DesktopIcon>().SetInactiveSprite();
-		GameObject.Find("Settings Icon").GetComponent<DesktopIcon>().SetInactiveSprite();
+		
+		foreach (DesktopIcon icon in icons) {
+			icon.SetInactiveSprite();
+		}
 
 	}
 
