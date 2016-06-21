@@ -48,12 +48,16 @@ public class DesktopIcon : MonoBehaviour, IPointerDownHandler {
 				//checks if settings icon
 				if (gameObject.name.Contains("Settings")) {
 					//checks security clearance
-					if (gameMan.securityClearance < 3)
+					if (gameMan.securityClearance < 3) {
 						//if too low, give warning prompt
 						CreateWindow(securityPrompt);
-					else
+					}
+						
+					else {
 						GameObject.Find("Task Window/Window Background/Timer").GetComponent<Timer>().SetPauseTime(true);
 						StartCoroutine("SpawnWindow");
+					}
+						
 				}
 				else {
 					StartCoroutine("SpawnWindow");

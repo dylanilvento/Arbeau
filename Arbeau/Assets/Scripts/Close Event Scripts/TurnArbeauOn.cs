@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class TurnArbeauOn : CloseEvent {
 	public GameObject welcome;
 	// Use this for initialization
 	GameManager gameMan;
+	public GameObject etiquetteDisableButton;
 
 	// Use this for initialization
 	void Start () {
@@ -33,5 +36,6 @@ public class TurnArbeauOn : CloseEvent {
 
 		//gameMan.SetArbeauOff(false);
 		GameObject.Find("Event Controller").GetComponent<GameManager>().SetArbeauOff(false);
+		GameObject.Find("AI Etiquette/Disable Button").GetComponent<Button>().interactable = true;
 	}
 }

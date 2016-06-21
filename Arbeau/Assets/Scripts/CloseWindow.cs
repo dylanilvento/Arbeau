@@ -132,21 +132,7 @@ public class CloseWindow : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 		}	
 
 		else if (textIndex <= textList.Count) {
-			//print("Test 2");
-		//if (winType != WindowType.Desktop) {
-			/*if (!(intro.GetIntroFinished()) && parent.name.Equals("Arbeau Window")) {
-				//print("Test A");
-				intro.PlayIntroWindow();
-			}*/
-
-			/*else if (parent.name.Contains("Pop-up")) {
-				print("Test B");
-				Destroy(parent);
-			}*/
-
-			
-				//print("Test C");
-				//print(textIndex + " < " + textList.Count);
+		
 			if (textIndex < textList.Count) {
 				//print("Test 3");
 				if (textList[textIndex].Length <= 33) textList[textIndex] += "\n\n";
