@@ -51,6 +51,8 @@ public class CloseWindow : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 			print(textIndex);
 
 		}
+
+		print(transform.position);
 		
 	}
 	
