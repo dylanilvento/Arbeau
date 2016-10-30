@@ -15,6 +15,10 @@ public class JoystickCursor : MonoBehaviour {
 
 	void Start () {
 		camera = mainCamera.GetComponent<Camera>();
+
+		if (XCI.GetNumPluggedCtrlrs() > 0) {
+			Cursor.visible = false;
+		}
 	}
 	
 	// Update is called once per frame
