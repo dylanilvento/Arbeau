@@ -89,8 +89,12 @@ public class ArbeauSpawner : MonoBehaviour {
 
 		GameObject win;
 
-		//win = (GameObject) Instantiate (arbeauWin[index], new Vector2(0f, 0f), transform.rotation);
-		win = (GameObject) Instantiate (arbeauWin[UnityEngine.Random.Range(0, (arbeauWin.Length))], new Vector2(0f, 0f), transform.rotation);
+		// Real version
+		// win = (GameObject) Instantiate (arbeauWin[UnityEngine.Random.Range(0, (arbeauWin.Length))], new Vector2(0f, 0f), transform.rotation);
+
+		// Demo version
+		win = (GameObject) Instantiate (arbeauWin[UnityEngine.Random.Range(0, 5)], new Vector2(0f, 0f), transform.rotation);
+
 
 		//win.SetActive(false);
 		win.name = "Arbeau Pop-up Window";
