@@ -37,10 +37,43 @@ public class JoystickCursor : MonoBehaviour {
         // print (axisX);
 
         RaycastWorldUI();
+        RaycastMoveHandler();
 	}
 
 	void FixedUpdate () {
 		transform.SetAsLastSibling();
+	}
+
+	void RaycastMoveHandler() {
+		PointerEventData pointerData = new PointerEventData(EventSystem.current);
+		AxisEventData axisData = new AxisEventData(EventSystem.current);
+
+		pointerData.position = transform.position;
+        axisData.moveVector = transform.position;//camera.WorldToScreenPoint(transform.position);//Input.mousePosition;
+
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(pointerData, results);
+
+        // print(results.Count);
+        if (results.Count > 1) {
+        	// print("true");
+
+        	for (int ii = 1; ii < 4 && ii < results.Count; ii++) {
+        		ExecuteEvents.Execute(results[ii].gameObject, pointerData, ExecuteEvents.pointerEnterHandler);
+        	}
+
+
+
+        	//only need to hit object at index 1 cause that's the highest up object
+        	// print(results[1].gameObject.name + ", " + results[1].index);
+        	// ExecuteEvents.Execute(results[1].gameObject, axisData, ExecuteEvents.moveHandler);
+        	// ExecuteEvents.Execute(results[1].gameObject, pointerData, ExecuteEvents.pointerEnterHandler);
+        	// ExecuteEvents.Execute(results[1].gameObject, pointerData, ExecuteEvents.pointerExitHandler);
+        		// ExecuteEvents.Execute(results[1].gameObject, pointerData, ExecuteEvents.beginDragHandler);
+        		// ExecuteEvents.Execute(results[1].gameObject, pointerData, ExecuteEvents.initializePotentialDrag);
+        		
+        	// } 
+        }
 	}
 
 	void RaycastWorldUI(){
@@ -54,12 +87,18 @@ public class JoystickCursor : MonoBehaviour {
 	        EventSystem.current.RaycastAll(pointerData, results);
 
 	        print(results.Count);
-	        if (results.Count > 0) {
-	        	print("true");
+	        if (results.Count > 1) {
+	        	// print("true");
 
-	        	foreach (RaycastResult result in results) {
-	        		ExecuteEvents.Execute(result.gameObject, pointerData, ExecuteEvents.pointerDownHandler);
-	        		ExecuteEvents.Execute(result.gameObject, pointerData, ExecuteEvents.beginDragHandler);
+	        	// foreach (RaycastResult result in results) {
+	        	for (int ii = 1; ii < 4 && ii < results.Count; ii++) {
+	        	//only need to hit object at index 1 cause that's the highest up object
+	        		// print(results[1].gameObject.name + ", " + results[1].index);
+	        		ExecuteEvents.Execute(results[ii].gameObject, pointerData, ExecuteEvents.pointerDownHandler);
+	        		// ExecuteEvents.Execute(results[ii].gameObject, pointerData, ExecuteEvents.pointerClickHandler);
+	        		ExecuteEvents.Execute(results[ii].gameObject, pointerData, ExecuteEvents.beginDragHandler);
+	        		ExecuteEvents.Execute(results[ii].gameObject, pointerData, ExecuteEvents.initializePotentialDrag);
+	        		
 	        	} 
 	        }
         }
@@ -73,15 +112,17 @@ public class JoystickCursor : MonoBehaviour {
 	        List<RaycastResult> results = new List<RaycastResult>();
 	        EventSystem.current.RaycastAll(pointerData, results);
 
-	        print(results.Count);
-	        if (results.Count > 0) {
+	        // print(results.Count);
+	        if (results.Count > 1) {
 	        	// print("true");
 
-	        	foreach (RaycastResult result in results) {
-	        		ExecuteEvents.Execute(result.gameObject, pointerData, ExecuteEvents.pointerUpHandler);
-	        		ExecuteEvents.Execute(result.gameObject, pointerData, ExecuteEvents.pointerClickHandler);
-	        		ExecuteEvents.Execute(result.gameObject, pointerData, ExecuteEvents.endDragHandler);
-	        	} 
+	        	// foreach (RaycastResult result in results) {
+	        	for (int ii = 1; ii < 4 && ii < results.Count; ii++) {
+	        		ExecuteEvents.Execute(results[ii].gameObject, pointerData, ExecuteEvents.pointerUpHandler);
+	        		ExecuteEvents.Execute(results[ii].gameObject, pointerData, ExecuteEvents.pointerClickHandler);
+	        		ExecuteEvents.Execute(results[ii].gameObject, pointerData, ExecuteEvents.endDragHandler);
+	        	}
+	        	// } 
 	        }
         }
     }

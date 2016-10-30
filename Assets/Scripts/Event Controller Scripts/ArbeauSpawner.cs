@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System;
 using System.Collections.Generic;
+using XboxCtrlrInput;
 
 public class ArbeauSpawner : MonoBehaviour {
 	public bool useSpawner, fastSpawn;
@@ -99,11 +100,17 @@ public class ArbeauSpawner : MonoBehaviour {
 
 		currWin = win;
 
+		if (XCI.GetNumPluggedCtrlrs() > 0) {
+			print(XCI.GetNumPluggedCtrlrs());
+			win.transform.position = GameObject.Find("Joystick Cursor").transform.position;
+			return;
+		}
+
 		Rect winRect = win.transform.GetChild(0).gameObject.GetComponent<RectTransform>().rect;
 		RectTransform winRectTrans = win.transform.GetChild(0).gameObject.GetComponent<RectTransform>();
 
 		//print("Screen width: " + Screen.width);
-		print("Screen height: " + Screen.height);
+		// print("Screen height: " + Screen.height);
 
 		float winX = Input.mousePosition.x * scaler.referenceResolution.x / Screen.width - (scaler.referenceResolution.x / 2f);
 		float winY = Input.mousePosition.y * scaler.referenceResolution.y / Screen.height - (scaler.referenceResolution.y / 2f);

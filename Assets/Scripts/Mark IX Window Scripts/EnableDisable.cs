@@ -14,6 +14,8 @@ public class EnableDisable : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
 	public CloseEvent buttonEvent;
 
+	public bool windowSpawned = false;
+
 	EttiquetteSpammer etSpam = null;
 
 	// Use this for initialization
@@ -37,9 +39,10 @@ public class EnableDisable : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 	public void OnPointerEnter(PointerEventData eventData)
     {
         //Debug.Log("Mouse enter");
-        if (windowIndex < window.Length && CheckSpammer() && !(gameMan.GetArbeauOff())) {
+        if (windowIndex < window.Length && CheckSpammer() && !windowSpawned && !(gameMan.GetArbeauOff())) {
+        	windowSpawned = true;
             GameObject win;
-
+            print("Get called?");
             //CanvasScaler scaler = GameObject.Find("Canvas").GetComponent<CanvasScaler>();
 
 			//win = (GameObject) Instantiate (arbeauWin[index], new Vector2(0f, 0f), transform.rotation);
