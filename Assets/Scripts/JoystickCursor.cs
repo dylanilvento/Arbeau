@@ -62,7 +62,7 @@ public class JoystickCursor : MonoBehaviour {
         if (results.Count > 1) {
         	// print("true");
 
-        	for (int ii = 1; ii < 4 && ii < results.Count; ii++) {
+        	for (int ii = 1; ii < 6 && ii < results.Count; ii++) {
         		ExecuteEvents.Execute(results[ii].gameObject, pointerData, ExecuteEvents.pointerEnterHandler);
         	}
 
@@ -95,7 +95,7 @@ public class JoystickCursor : MonoBehaviour {
 	        	// print("true");
 
 	        	// foreach (RaycastResult result in results) {
-	        	for (int ii = 1; ii < 4 && ii < results.Count; ii++) {
+	        	for (int ii = 1; ii < 6 && ii < results.Count; ii++) {
 	        	//only need to hit object at index 1 cause that's the highest up object
 	        		// print(results[1].gameObject.name + ", " + results[1].index);
 	        		ExecuteEvents.Execute(results[ii].gameObject, pointerData, ExecuteEvents.pointerDownHandler);
@@ -121,7 +121,7 @@ public class JoystickCursor : MonoBehaviour {
 	        	// print("true");
 
 	        	// foreach (RaycastResult result in results) {
-	        	for (int ii = 1; ii < 4 && ii < results.Count; ii++) {
+	        	for (int ii = 1; ii < 6 && ii < results.Count; ii++) {
 	        		ExecuteEvents.Execute(results[ii].gameObject, pointerData, ExecuteEvents.pointerUpHandler);
 	        		ExecuteEvents.Execute(results[ii].gameObject, pointerData, ExecuteEvents.pointerClickHandler);
 	        		ExecuteEvents.Execute(results[ii].gameObject, pointerData, ExecuteEvents.endDragHandler);
