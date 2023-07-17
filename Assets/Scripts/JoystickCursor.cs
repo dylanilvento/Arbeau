@@ -52,7 +52,7 @@ public class JoystickCursor : MonoBehaviour
         AxisEventData axisData = new AxisEventData(EventSystem.current);
 
         pointerData.position = transform.position;
-        axisData.moveVector = transform.position; //camera.WorldToScreenPoint(transform.position);//Input.mousePosition;
+        axisData.moveVector = transform.position;
 
         List<RaycastResult> results = new List<RaycastResult>();
         EventSystem.current.RaycastAll(pointerData, results);
@@ -75,7 +75,7 @@ public class JoystickCursor : MonoBehaviour
 
     void RaycastWorldUI()
     {
-        if (true)
+        if (GameManager.Instance.player.GetButtonDown("Select"))
         {
             print(transform.position);
             PointerEventData pointerData = new PointerEventData(EventSystem.current);
@@ -113,7 +113,7 @@ public class JoystickCursor : MonoBehaviour
                 }
             }
         }
-        else if (true)
+        else if (GameManager.Instance.player.GetButtonUp("Select"))
         {
             print(transform.position);
             PointerEventData pointerData = new PointerEventData(EventSystem.current);
