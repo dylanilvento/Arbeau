@@ -1,36 +1,35 @@
 ﻿using UnityEngine;
 using System.Collections;
-using XboxCtrlrInput;
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
+using Rewired;
 
-public class JoystickCursor : MonoBehaviour {
+public class JoystickCursor : MonoBehaviour
+{
+    // Use this for initialization
+    // public XboxController playerNumber = XboxController.First;
+    public float walkingSpeed = 7.0f;
 
-	// Use this for initialization
-	public XboxController playerNumber = XboxController.First;
-	public float walkingSpeed = 7.0f;
+    public GameObject mainCamera;
+    Camera camera;
 
-	public GameObject mainCamera;
-	Camera camera;
+    void Start()
+    {
+        camera = mainCamera.GetComponent<Camera>();
 
-	void Start () {
-		camera = mainCamera.GetComponent<Camera>();
+        if (GameManager.Instance.usingController)
+        {
+            Cursor.visible = false;
+        }
+    }
 
-		if (XCI.GetNumPluggedCtrlrs() > 0) {
-			Cursor.visible = false;
-		}
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    // Update is called once per frame
+    void Update()
+    {
+        Vector2 newPosition = transform.position;
 
-		Vector2 newPosition = transform.position;
-
-		float axisX = Input.GetAxis("Horizontal");
-		float axisY = Input.GetAxis("Vertical");
-		
-        // float axisX = XCI.GetAxis(XboxCtrlrInput.XboxAxis.LeftStickX);
-        // float axisY = XCI.GetAxis(XboxCtrlrInput.XboxAxis.LeftStickY);
+        float axisX = Input.GetAxis("Horizontal");
+        float axisY = Input.GetAxis("Vertical");
 
         float newPosX = newPosition.x + (axisX * walkingSpeed * Time.deltaTime);
         float newPosY = newPosition.y + (axisY * walkingSpeed * Time.deltaTime);
@@ -38,96 +37,113 @@ public class JoystickCursor : MonoBehaviour {
         newPosition = new Vector2(newPosX, newPosY);
         transform.position = newPosition;
 
-        // print (axisX);
+        // RaycastWorldUI();
+        // RaycastMoveHandler();
+    }
 
-        RaycastWorldUI();
-        RaycastMoveHandler();
-	}
+    void FixedUpdate()
+    {
+        transform.SetAsLastSibling();
+    }
 
-	void FixedUpdate () {
-		transform.SetAsLastSibling();
-	}
+    void RaycastMoveHandler()
+    {
+        PointerEventData pointerData = new PointerEventData(EventSystem.current);
+        AxisEventData axisData = new AxisEventData(EventSystem.current);
 
-	void RaycastMoveHandler() {
-		PointerEventData pointerData = new PointerEventData(EventSystem.current);
-		AxisEventData axisData = new AxisEventData(EventSystem.current);
-
-		pointerData.position = transform.position;
-        axisData.moveVector = transform.position;//camera.WorldToScreenPoint(transform.position);//Input.mousePosition;
+        pointerData.position = transform.position;
+        axisData.moveVector = transform.position; //camera.WorldToScreenPoint(transform.position);//Input.mousePosition;
 
         List<RaycastResult> results = new List<RaycastResult>();
         EventSystem.current.RaycastAll(pointerData, results);
 
         // print(results.Count);
-        if (results.Count > 1) {
-        	// print("true");
+        if (results.Count > 1)
+        {
+            // print("true");
 
-        	for (int ii = 1; ii < 6 && ii < results.Count; ii++) {
-        		ExecuteEvents.Execute(results[ii].gameObject, pointerData, ExecuteEvents.pointerEnterHandler);
-        	}
-
-
-
-        	//only need to hit object at index 1 cause that's the highest up object
-        	// print(results[1].gameObject.name + ", " + results[1].index);
-        	// ExecuteEvents.Execute(results[1].gameObject, axisData, ExecuteEvents.moveHandler);
-        	// ExecuteEvents.Execute(results[1].gameObject, pointerData, ExecuteEvents.pointerEnterHandler);
-        	// ExecuteEvents.Execute(results[1].gameObject, pointerData, ExecuteEvents.pointerExitHandler);
-        		// ExecuteEvents.Execute(results[1].gameObject, pointerData, ExecuteEvents.beginDragHandler);
-        		// ExecuteEvents.Execute(results[1].gameObject, pointerData, ExecuteEvents.initializePotentialDrag);
-        		
-        	// } 
+            for (int ii = 1; ii < 6 && ii < results.Count; ii++)
+            {
+                ExecuteEvents.Execute(
+                    results[ii].gameObject,
+                    pointerData,
+                    ExecuteEvents.pointerEnterHandler
+                );
+            }
         }
-	}
+    }
 
-	void RaycastWorldUI(){
-	    if(XCI.GetButtonDown(XboxButton.A) ){
-	    	print(transform.position);
-	        PointerEventData pointerData = new PointerEventData(EventSystem.current);
+    void RaycastWorldUI()
+    {
+        if (true)
+        {
+            print(transform.position);
+            PointerEventData pointerData = new PointerEventData(EventSystem.current);
 
-	        pointerData.position = transform.position;//camera.WorldToScreenPoint(transform.position);//Input.mousePosition;
+            pointerData.position = transform.position; //camera.WorldToScreenPoint(transform.position);//Input.mousePosition;
 
-	        List<RaycastResult> results = new List<RaycastResult>();
-	        EventSystem.current.RaycastAll(pointerData, results);
+            List<RaycastResult> results = new List<RaycastResult>();
+            EventSystem.current.RaycastAll(pointerData, results);
 
-	        print(results.Count);
-	        if (results.Count > 1) {
-	        	// print("true");
+            if (results.Count > 1)
+            {
+                // print("true");
 
-	        	// foreach (RaycastResult result in results) {
-	        	for (int ii = 1; ii < 6 && ii < results.Count; ii++) {
-	        	//only need to hit object at index 1 cause that's the highest up object
-	        		// print(results[1].gameObject.name + ", " + results[1].index);
-	        		ExecuteEvents.Execute(results[ii].gameObject, pointerData, ExecuteEvents.pointerDownHandler);
-	        		// ExecuteEvents.Execute(results[ii].gameObject, pointerData, ExecuteEvents.pointerClickHandler);
-	        		ExecuteEvents.Execute(results[ii].gameObject, pointerData, ExecuteEvents.beginDragHandler);
-	        		ExecuteEvents.Execute(results[ii].gameObject, pointerData, ExecuteEvents.initializePotentialDrag);
-	        		
-	        	} 
-	        }
+                // foreach (RaycastResult result in results) {
+                for (int ii = 1; ii < 6 && ii < results.Count; ii++)
+                {
+                    //only need to hit object at index 1 cause that's the highest up object
+                    // print(results[1].gameObject.name + ", " + results[1].index);
+                    ExecuteEvents.Execute(
+                        results[ii].gameObject,
+                        pointerData,
+                        ExecuteEvents.pointerDownHandler
+                    );
+                    // ExecuteEvents.Execute(results[ii].gameObject, pointerData, ExecuteEvents.pointerClickHandler);
+                    ExecuteEvents.Execute(
+                        results[ii].gameObject,
+                        pointerData,
+                        ExecuteEvents.beginDragHandler
+                    );
+                    ExecuteEvents.Execute(
+                        results[ii].gameObject,
+                        pointerData,
+                        ExecuteEvents.initializePotentialDrag
+                    );
+                }
+            }
         }
+        else if (true)
+        {
+            print(transform.position);
+            PointerEventData pointerData = new PointerEventData(EventSystem.current);
 
-        else if(XCI.GetButtonUp(XboxButton.A)) {
-        	print(transform.position);
-	        PointerEventData pointerData = new PointerEventData(EventSystem.current);
+            pointerData.position = transform.position;
 
-	        pointerData.position = transform.position;//camera.WorldToScreenPoint(transform.position);//Input.mousePosition;
+            List<RaycastResult> results = new List<RaycastResult>();
+            EventSystem.current.RaycastAll(pointerData, results);
 
-	        List<RaycastResult> results = new List<RaycastResult>();
-	        EventSystem.current.RaycastAll(pointerData, results);
-
-	        // print(results.Count);
-	        if (results.Count > 1) {
-	        	// print("true");
-
-	        	// foreach (RaycastResult result in results) {
-	        	for (int ii = 1; ii < 6 && ii < results.Count; ii++) {
-	        		ExecuteEvents.Execute(results[ii].gameObject, pointerData, ExecuteEvents.pointerUpHandler);
-	        		ExecuteEvents.Execute(results[ii].gameObject, pointerData, ExecuteEvents.pointerClickHandler);
-	        		ExecuteEvents.Execute(results[ii].gameObject, pointerData, ExecuteEvents.endDragHandler);
-	        	}
-	        	// } 
-	        }
+            if (results.Count > 1)
+            {
+                for (int ii = 1; ii < 6 && ii < results.Count; ii++)
+                {
+                    ExecuteEvents.Execute(
+                        results[ii].gameObject,
+                        pointerData,
+                        ExecuteEvents.pointerUpHandler
+                    );
+                    ExecuteEvents.Execute(
+                        results[ii].gameObject,
+                        pointerData,
+                        ExecuteEvents.pointerClickHandler
+                    );
+                    ExecuteEvents.Execute(
+                        results[ii].gameObject,
+                        pointerData,
+                        ExecuteEvents.endDragHandler
+                    );
+                }
+            }
         }
     }
 }
