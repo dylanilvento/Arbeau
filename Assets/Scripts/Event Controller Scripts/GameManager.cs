@@ -8,7 +8,12 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    public Player player;
+    public int playerId = 0; // The Rewired player id of this character
+
+    public Rewired.Player player
+    {
+        get { return ReInput.isReady ? ReInput.players.GetPlayer(playerId) : null; }
+    }
 
     public bool usingController = false;
 
@@ -46,16 +51,17 @@ public class GameManager : MonoBehaviour
 
     Dictionary<string, int> closeMap = new Dictionary<string, int>();
 
-    // Use this for initialization
-    void Start()
+    void Awake()
     {
-        if (Instance != null)
+        if (Instance == null)
         {
             Instance = this;
         }
+    }
 
-        player = ReInput.players.GetPlayer(0);
-
+    // Use this for initialization
+    void Start()
+    {
         distMan = GetComponent<DistrictManager>();
         taskCreator = GetComponent<TaskCreator>();
         arbeauSpawner = GetComponent<ArbeauSpawner>();

@@ -21,6 +21,10 @@ public class JoystickCursor : MonoBehaviour
         {
             Cursor.visible = false;
         }
+        else
+        {
+            this.gameObject.SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -37,8 +41,8 @@ public class JoystickCursor : MonoBehaviour
         newPosition = new Vector2(newPosX, newPosY);
         transform.position = newPosition;
 
-        // RaycastWorldUI();
-        // RaycastMoveHandler();
+        RaycastWorldUI();
+        RaycastMoveHandler();
     }
 
     void FixedUpdate()
