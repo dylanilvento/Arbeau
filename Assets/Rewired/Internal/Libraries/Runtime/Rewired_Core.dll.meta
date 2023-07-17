@@ -23,6 +23,7 @@ PluginImporter:
   iconMap: {}
   executionOrder:
     Rewired.Initializer: -31999
+    Rewired.InputManager_Base: -32000
     Rewired.Internal.OnGUIHelper: -31990
   defineConstraints: []
   isPreloaded: 0
