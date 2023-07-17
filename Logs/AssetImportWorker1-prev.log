@@ -16,13 +16,13 @@ COMMAND LINE ARGUMENTS:
 -batchMode
 -noUpm
 -name
-AssetImportWorker0
+AssetImportWorker1
 -projectPath
 /Users/dylan/Repos/Arbeau
 -logFile
-Logs/AssetImportWorker0.log
+Logs/AssetImportWorker1.log
 -srvPort
-53774
+53477
 Successfully changed project path to: /Users/dylan/Repos/Arbeau
 /Users/dylan/Repos/Arbeau
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
@@ -54,7 +54,7 @@ Successfully changed project path to: /Users/dylan/Repos/Arbeau
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Refreshing native plugins compatible for Editor in 65.68 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 57.82 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2021.3.6f1 (7da38d85baf6)
 [Subsystems] Discovering subsystems at path /Applications/Unity/Hub/Editor/2021.3.6f1/Unity.app/Contents/Resources/UnitySubsystems
@@ -69,75 +69,75 @@ Initialize mono
 Mono path[0] = '/Applications/Unity/Hub/Editor/2021.3.6f1/Unity.app/Contents/Managed'
 Mono path[1] = '/Applications/Unity/Hub/Editor/2021.3.6f1/Unity.app/Contents/MonoBleedingEdge/lib/mono/unityjit-macos'
 Mono config path = '/Applications/Unity/Hub/Editor/2021.3.6f1/Unity.app/Contents/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56978
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56830
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: /Applications/Unity/Hub/Editor/2021.3.6f1/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll
-Registered in 0.000548 seconds.
+Registered in 0.000478 seconds.
 Native extension for OSXStandalone target not found
-Refreshing native plugins compatible for Editor in 58.08 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 60.46 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.370 seconds
+- Completed reload, in  0.362 seconds
 Domain Reload Profiling:
-	ReloadAssembly (370ms)
-		BeginReloadAssembly (33ms)
+	ReloadAssembly (362ms)
+		BeginReloadAssembly (25ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (0ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
 			CreateAndSetChildDomain (0ms)
-		EndReloadAssembly (273ms)
-			LoadAssemblies (33ms)
+		EndReloadAssembly (272ms)
+			LoadAssemblies (25ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
 			SetupTypeCache (63ms)
 			ReleaseScriptCaches (0ms)
 			RebuildScriptCaches (19ms)
-			SetupLoadedEditorAssemblies (165ms)
+			SetupLoadedEditorAssemblies (164ms)
 				LogAssemblyErrors (0ms)
 				InitializePlatformSupportModulesInManaged (3ms)
 				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (58ms)
+				RefreshPlugins (60ms)
 				BeforeProcessingInitializeOnLoad (1ms)
-				ProcessInitializeOnLoadAttributes (78ms)
-				ProcessInitializeOnLoadMethodAttributes (25ms)
+				ProcessInitializeOnLoadAttributes (76ms)
+				ProcessInitializeOnLoadMethodAttributes (24ms)
 				AfterProcessingInitializeOnLoad (0ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
 			AwakeInstancesAfterBackupRestoration (0ms)
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.008114 seconds.
+Registered in 0.002223 seconds.
 Begin MonoManager ReloadAssembly
 Symbol file LoadedFromMemory doesn't match image /Users/dylan/Repos/Arbeau/Library/PackageCache/com.unity.visualscripting@1.7.8/Editor/VisualScripting.Core/Dependencies/YamlDotNet/Unity.VisualScripting.YamlDotNet.dll
 Symbol file LoadedFromMemory doesn't match image /Users/dylan/Repos/Arbeau/Library/PackageCache/com.unity.visualscripting@1.7.8/Editor/VisualScripting.Core/Dependencies/DotNetZip/Unity.VisualScripting.IonicZip.dll
 Native extension for OSXStandalone target not found
-Refreshing native plugins compatible for Editor in 0.39 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 0.35 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.574 seconds
+- Completed reload, in  0.556 seconds
 Domain Reload Profiling:
-	ReloadAssembly (575ms)
+	ReloadAssembly (556ms)
 		BeginReloadAssembly (52ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (3ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (16ms)
-		EndReloadAssembly (454ms)
-			LoadAssemblies (41ms)
+			CreateAndSetChildDomain (15ms)
+		EndReloadAssembly (437ms)
+			LoadAssemblies (33ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (147ms)
+			SetupTypeCache (145ms)
 			ReleaseScriptCaches (0ms)
-			RebuildScriptCaches (35ms)
-			SetupLoadedEditorAssemblies (201ms)
+			RebuildScriptCaches (34ms)
+			SetupLoadedEditorAssemblies (197ms)
 				LogAssemblyErrors (0ms)
 				InitializePlatformSupportModulesInManaged (2ms)
 				SetLoadedEditorAssemblies (0ms)
 				RefreshPlugins (0ms)
 				BeforeProcessingInitializeOnLoad (46ms)
-				ProcessInitializeOnLoadAttributes (134ms)
-				ProcessInitializeOnLoadMethodAttributes (18ms)
+				ProcessInitializeOnLoadAttributes (133ms)
+				ProcessInitializeOnLoadMethodAttributes (15ms)
 				AfterProcessingInitializeOnLoad (1ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
@@ -147,12 +147,12 @@ Platform modules already initialized, skipping
 Worker process is ready to serve import requests
 Launching external process: /Applications/Unity/Hub/Editor/2021.3.6f1/Unity.app/Contents/Tools/UnityShaderCompiler
 Launched and connected shader compiler UnityShaderCompiler after 0.05 seconds
-Refreshing native plugins compatible for Editor in 0.39 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 0.41 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 3329 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 34 unused Assets / (39.7 KB). Loaded Objects now: 3836.
-Memory consumption went from 118.8 MB to 118.7 MB.
-Total: 2.023417 ms (FindLiveObjects: 0.095416 ms CreateObjectMapping: 0.039167 ms MarkObjects: 1.825334 ms  DeleteObjects: 0.063000 ms)
+Unloading 34 unused Assets / (39.3 KB). Loaded Objects now: 3836.
+Memory consumption went from 118.5 MB to 118.5 MB.
+Total: 2.223083 ms (FindLiveObjects: 0.090750 ms CreateObjectMapping: 0.039541 ms MarkObjects: 2.044292 ms  DeleteObjects: 0.048041 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
@@ -166,13 +166,26 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
-  Time since last request: 1023693.896745 seconds.
-  path: Assets/Prefabs
-  artifactKey: Guid(c1dcc413b5ce544d491a95194ab070c9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs using Guid(c1dcc413b5ce544d491a95194ab070c9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '88642303644d9aeabe4da99d08b88540') in 0.004730 seconds 
+  Time since last request: 1023048.501996 seconds.
+  path: Assets/Prefabs/Menu Bar Piece.prefab
+  artifactKey: Guid(e58729e190396483589e1dd1eda4d0ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Menu Bar Piece.prefab using Guid(e58729e190396483589e1dd1eda4d0ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5201da155018a10bc8c0f9980f0010a7') in 0.601473 seconds 
 ========================================================================
 Received Import Request.
-  Time since last request: 2.462530 seconds.
-  path: Assets/Prefabs/Rewired Input Manager.prefab
-  artifactKey: Guid(a1ea140789c754faa87e55c560ce7e58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/Rewired Input Manager.prefab using Guid(a1ea140789c754faa87e55c560ce7e58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3784997fa10743495e348b39d5cdefa5') in 0.364279 seconds 
+  Time since last request: 0.000077 seconds.
+  path: Assets/Prefabs/Submit Arbeau Window.prefab
+  artifactKey: Guid(25952a4cc579f4091b794ed891134985) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Submit Arbeau Window.prefab using Guid(25952a4cc579f4091b794ed891134985) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e291b809abaf1d65ce29bd8bcf92b5b4') in 0.005007 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000046 seconds.
+  path: Assets/Prefabs/Start Button.prefab
+  artifactKey: Guid(2cd2e8cb14adb41d5a66bdcd1e5f2dc1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Start Button.prefab using Guid(2cd2e8cb14adb41d5a66bdcd1e5f2dc1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e78d1f081f2891d658bfb6d1f70c5908') in 0.003058 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000045 seconds.
+  path: Assets/Prefabs/Arbeau Window.prefab
+  artifactKey: Guid(0ab730712d51c4bff8189c3aa6d56c51) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Arbeau Window.prefab using Guid(0ab730712d51c4bff8189c3aa6d56c51) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '612477d2bb54cbcbc2bb0e4d8fb8e441') in 0.003295 seconds 
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file
