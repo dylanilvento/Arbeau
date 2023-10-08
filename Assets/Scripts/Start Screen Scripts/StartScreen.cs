@@ -73,11 +73,11 @@ public class StartScreen : MonoBehaviour
 
         yield return new WaitForSeconds(4f);
 
-        typing.PlayScheduled(0f);
-        StartCoroutine(MakeLogo(ward, wardText));
+        // typing.PlayScheduled(0f);
+        // StartCoroutine(MakeLogo(ward, wardText));
 
-        yield return new WaitForSeconds(4.35f);
-        typing.Pause();
+        // yield return new WaitForSeconds(4.35f);
+        // typing.Pause();
 
         yield return new WaitForSeconds(0.65f);
         typing.PlayScheduled(0f);
